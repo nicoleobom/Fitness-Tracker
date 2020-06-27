@@ -5,7 +5,7 @@ const path = require('path');
 
 const PORT = process.env.PORT || 3000;
 
-// const db = require('./model');
+const db = require('./model');
 
 const app = express();
 
@@ -23,4 +23,21 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/fitnessTrackerD
 mongoose.connection.once('open', () => console.log('Connected!'))
                     .on('error', (error) => {
                         console.warn('Error', error);
-                    })
+                    });
+
+db.Workouts.create({
+    name: 'Fitness Tracker'
+}).then(dbWorkouts => {
+    console.log('log from dbWorkouts.create '+dbWorkouts)
+}).catch(({message}) => {
+    console.log('Error' + message);
+});
+
+
+// App
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'))
+})
+
+app.use(require('./controllers/exercises'));
+app.use(require('./controllers/workouts'))
