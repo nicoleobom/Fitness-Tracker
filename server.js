@@ -13,3 +13,14 @@ app.use(logger('dev'));
 app.use(express.static('public'));
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
+
+// Mongoose
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/fitnessTrackerDB', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true 
+});
+
+mongoose.connection.once('open', () => console.log('Connected!'))
+                    .on('error', (error) => {
+                        console.warn('Error', error);
+                    })
