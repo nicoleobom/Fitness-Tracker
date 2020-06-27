@@ -73,3 +73,28 @@ router.put('/exercises:id', (req, res) => {
         })
     })
 })
+
+// Delete
+router.delete('/exercises/:id', (req, res) => {
+    let exID = req.params.id;
+    db.Exercises.findByIdAndRemove(req.params.id)
+    .then(results => {
+        if (!results) {
+            return res.status(404).send({
+                message: 'Exercise not found. Invalid ID.'
+            });
+        }
+        res.send({message: 'Exercise deleted.'})
+    }).catch(error => {
+        if (error.kind === 'ObjectId' || error.name == 'NotFound') {
+            return res.status(404).send({
+                message: 'Exercise not found with that ID.'
+            });
+        }
+        return res.status(500).send({
+            message: 'Could not delete note.'
+        })
+    })
+});
+
+module.exports = router;
