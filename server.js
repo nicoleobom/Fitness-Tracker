@@ -5,7 +5,7 @@ const path = require('path');
 
 const PORT = process.env.PORT || 3000;
 
-const db = require('./model');
+const db = require('./app/models');
 
 const app = express();
 
@@ -39,8 +39,8 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'))
 })
 
-app.use(require('./controllers/exercises'));
-app.use(require('./controllers/workouts'));
+app.use(require('./app/controllers/exercises'));
+app.use(require('./app/controllers/workouts'));
 
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`)
