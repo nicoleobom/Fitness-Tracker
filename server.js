@@ -39,7 +39,7 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, './public/index.html'))
 })
 
-app.use(require('./app/routes/exercises.js'));
+app.use(require('./app/routes/api-routes.js'));
 app.use(require('./app/routes/workouts.js'));
 
 app.listen(PORT, function() {
