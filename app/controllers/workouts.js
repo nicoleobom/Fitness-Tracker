@@ -77,4 +77,14 @@ router.get('/populated', function(req, res) {
     }).catch(function(error) {
         res.json(error);
     })
-})
+});
+
+router.get('/Workouts', function(req, res) {
+    db.Workouts.find({}).then(function(dbWorkouts) {
+        res.json(dbWorkouts);
+    }).catch(function(error) {
+        res.json(error);
+    });
+});
+
+module.exports = router;
