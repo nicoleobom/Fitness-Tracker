@@ -39,8 +39,8 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, './public/index.html'))
 })
 
-app.use(require('./app/controllers/exercises.js'));
-app.use(require('./app/controllers/workouts.js'));
+app.use(require('./app/routes/exercises.js'));
+app.use(require('./app/routes/workouts.js'));
 
 app.listen(PORT, function() {
     console.log(`App listening on port ${PORT}`)
