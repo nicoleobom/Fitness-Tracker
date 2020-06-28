@@ -40,7 +40,7 @@ app.get('/', function(req, res) {
 })
 
 app.use(require('./app/routes/api-routes.js'));
-app.use(require('./app/routes/workouts.js'));
+app.use(require('./app/routes/html-routes.js'));
 
 app.listen(PORT, function() {
     console.log(`App listening on port ${PORT}`)
