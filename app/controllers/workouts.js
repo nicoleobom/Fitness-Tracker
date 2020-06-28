@@ -47,5 +47,34 @@ router.post('/update/:id', function(req, res) {
     })
 });
 
-// delete request
-router.delete('/delete/:id')
+// delete request for 1
+router.delete('/delete/:id', function(req, res) {
+    db.Workouts.remove({
+        _id: mongoose.ObjectId(req.params.id)
+    }, function(error, data) {
+        if (error) {
+            res.send(error)
+        } else {
+            res.send(data);
+        }
+    })
+});
+
+router.delete('/clearall', function(req, res) {
+    db.Workouts.remove({}, function(error, resp) {
+        if (error) {
+            res.send(error);
+        } else {
+            res.send (resp);
+        }
+    });
+});
+
+// get populated workouts
+router.get('/populated', function(req, res) {
+    db.Workouts.find({}).populate("{me: one}, {").then(function(dbWorkouts) {
+        res.json(dbWorkouts);
+    }).catch(function(error) {
+        res.json(error);
+    })
+})
