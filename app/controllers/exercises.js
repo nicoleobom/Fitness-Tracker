@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const db = require('../app/models')
+const db = require('../models')
 
 router.post('/submit', ({body}, res) => {
     console.log(body);

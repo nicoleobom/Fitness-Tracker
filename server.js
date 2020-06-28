@@ -35,13 +35,13 @@ db.Workouts.create({
 
 
 // App
-app.get('/', (req, res) => {
+app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, './public/index.html'))
 })
 
 app.use(require('./app/controllers/exercises'));
-app.use(require('./app/controllers/workouts'));
+// app.use(require('./app/controllers/workouts'));
 
-app.listen(PORT, () => {
+app.listen(PORT, function() {
     console.log(`App listening on port ${PORT}`)
 })
