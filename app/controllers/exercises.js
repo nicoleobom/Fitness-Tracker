@@ -13,7 +13,7 @@ router.post('/submit', ({body}, res) => {
     })
 });
 
-router.get('/exercises', (req, res) => {
+router.get('/exercise', (req, res) => {
     db.Exercises.find({}).sort({_id: 'description'})
     .then(dbExercises => {
         res.json(dbExercises);
@@ -23,7 +23,7 @@ router.get('/exercises', (req, res) => {
 })
 
 // Find by ID
-router.get('/exercises/:id', (req, res) => {
+router.get('/exercise/:id', (req, res) => {
     db.Exercises.findById(req.params.id).then(result => {
         if(!result) {
             return res.status(404).send({
@@ -44,7 +44,7 @@ router.get('/exercises/:id', (req, res) => {
 });
 
 // by noteId
-router.put('/exercises:id', (req, res) => {
+router.put('/exercise:id', (req, res) => {
     if (!req.body.name) {
         return res.status(400).send({
             message: 'Exercise name cannot be empty!'
@@ -75,7 +75,7 @@ router.put('/exercises:id', (req, res) => {
 })
 
 // Delete
-router.delete('/exercises/:id', (req, res) => {
+router.delete('/exercise/:id', (req, res) => {
     let exID = req.params.id;
     db.Exercises.findByIdAndRemove(req.params.id)
     .then(results => {
