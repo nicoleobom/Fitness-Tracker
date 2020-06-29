@@ -23,8 +23,16 @@ module.exports = function(app) {
         }
     });
 
-    // add exercises to workouts
-        // gets currently saved exercises within selected workout
+    app.put('/api/workouts/:id', function({body, params}, res) {
+        const workoutid = params.id;
+        let previousExercises = [];
 
-    // get all workouts
+        db.Workouts.find({_id: workoutid}).then(dbWorkout => {
+            previousExercises = dbWorkout[0].exercises;
+            res.json(previousExercises);
+            let totalExercises = [...savedExercises, body];
+            console.log(totalExercises);
+            updateWorkout(totalExercises);
+        })
+    })
 }
