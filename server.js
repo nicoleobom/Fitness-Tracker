@@ -15,32 +15,26 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 
 // Mongoose
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/fitnessTrackerDB', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true 
-});
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitnessTrackerDB", { useNewUrlParser: true });
 
-mongoose.connection.once('open', () => console.log('Connected!'))
-                    .on('error', (error) => {
-                        console.warn('Error', error);
-                    });
-
-db.Workouts.create({
-    name: 'Fitness Tracker'
-}).then(dbWorkouts => {
-    console.log('log from dbWorkouts.create '+dbWorkouts)
-}).catch(({message}) => {
-    console.log('Error' + message);
-});
+// db.Workouts.create({
+//     name: 'Fitness Tracker'
+// }).then(dbWorkouts => {
+//     console.log('log from dbWorkouts.create '+dbWorkouts)
+// }).catch(({message}) => {
+//     console.log('Error' + message);
+// });
 
 
 // App
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, './public/index.html'))
-})
+// app.get('/', function(req, res) {
+//     res.sendFile(path.join(__dirname, './public/index.html'))
+// })
 
-app.use(require('./app/routes/api-routes.js'));
-app.use(require('./app/routes/html-routes.js'));
+require('./app/routes/api-routes');
+require('./app/routes/html-routes')
+// app.use(require('./app/routes/api-routes.js'));
+// app.use(require('./app/routes/html-routes.js'));
 
 app.listen(PORT, function() {
     console.log(`App listening on port ${PORT}`)
