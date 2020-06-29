@@ -3,7 +3,7 @@ var db = require("../models");
 module.exports = function(app) {
 
     // Used by api.js to get last workout
-    app.get("/api/workout", (req, res) => {
+    app.get("/api/workouts", (req, res) => {
         db.Workout.find({})
         .then(workout => {
             res.json(workout);
@@ -65,60 +65,3 @@ module.exports = function(app) {
         });
     }); 
 };
-
-// var db = require('../models');
-
-// module.exports = function(app) {
-
-//     app.get('/api/workouts', function(req, res) {
-//         db.Workouts.find({})
-//         .then(workout => {
-//             res.json(workout);
-//         }).catch(error => {
-//             res.json(error);
-//         });
-//     });
-
-//     // create new workout, post to api via json
-//     app.post("/api/workouts", async (req, res) => {
-//         try{
-//             const response = await db.Workouts.create({type: "workout"})
-//             res.json(response);
-//         }
-//         catch(err){
-//             console.log("error occurred creating a workout: ", err)
-//         }
-//     })
-
-//     app.put('/api/workouts/:id', function({body, params}, res) {
-//         const workoutid = params.id;
-//         let previousExercises = [];
-
-//         db.Workouts.find({_id: workoutid})
-//         .then(dbWorkout => {
-//             previousExercises = dbWorkout[0].exercises;
-//             res.json(previousExercises);
-//             let totalExercises = [...savedExercises, body];
-//             console.log(totalExercises);
-//             updateWorkout(totalExercises);
-//         }).catch(error => {
-//             res.json(error);
-//         });
-
-//         function updateWorkout(exercises) {
-//             db.Workouts.findByIdAndUpdate(workoutid, {exercises: exercises}, function(error) {
-//                 if(error) {
-//                     console.log(error);
-//                 }
-//             })
-//         }
-//     })
-
-//     app.get('/api/workouts/range', function(req, res) {
-//         db.Workouts.find({}).then(workout => {
-//             res.json(workout);
-//         }).catch(error => {
-//             res.json(error);
-//         })
-//     })
-// }
