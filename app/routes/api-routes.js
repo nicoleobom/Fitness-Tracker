@@ -33,6 +33,24 @@ module.exports = function(app) {
             let totalExercises = [...savedExercises, body];
             console.log(totalExercises);
             updateWorkout(totalExercises);
+        }).catch(error => {
+            res.json(error);
+        });
+
+        function updateWorkout(exercises) {
+            db.Workouts.findByIdAndUpdate(workoutid, {exercises: exercises}, function(error) {
+                if(error) {
+                    console.log(error);
+                }
+            })
+        }
+    })
+
+    app.get('/api/workouts/range', function(req, res) {
+        db.Workouts.find({}).then(workout => {
+            res.json(workout);
+        }).catch(error => {
+            res.json(error);
         })
     })
 }
