@@ -2,7 +2,7 @@ var db = require("../models");
 
 module.exports = function(app) {
 
-    // Used by api.js to get last workout
+    // Get last workout
     app.get("/api/workouts", (req, res) => {
         db.workout.find({})
         .then(workout => {
@@ -24,15 +24,14 @@ module.exports = function(app) {
         }
     })
 
-    // Used by api.js to add an exercise to a workout
+    // Add an exercise to a workout
     app.put("/api/workouts/:id", ({body, params}, res) => {
         const workoutId = params.id;
         let savedExercises = [];
 
-        // gets all the currently saved exercises in the current workout
+        // Gets exercises wthin workout
         db.workout.find({_id: workoutId})
             .then(dbWorkout => {
-                // console.log(dbworkout)
                 savedExercises = dbworkout[0].exercises;
                 res.json(dbworkout[0].exercises);
                 let allExercises = [...savedExercises, body]
