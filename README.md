@@ -33,4 +33,4 @@ ISC
 
 ## Deployed Application
 
-TBD
+https://fitness-tracker-06292020.herokuapp.com/
