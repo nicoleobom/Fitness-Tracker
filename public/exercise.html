@@ -5,15 +5,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-xVVam1KS4+Qt2OrFa+VdRUoXygyKIuNWUUUBZYv+n27STsJ7oDOHJgfF0bNKLMJF" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
   <link rel="stylesheet" href="style.css" />
-  <title>Fitness Tracker</title>
+  <title>Fitness Tracker | Add Exercise</title>
 </head>
 
 <body>
   <nav>
-    <a href="/">Fitness Tracker</a>
-    <a href="/stats">Dashboard</a>
+    <a href="/"><i class="fas fa-plus-square"></i></a>
+    <a href="/stats"><i class="fas fa-analytics"></i></a>
   </nav>
   <div class="wrapper">
     <header>
@@ -21,7 +22,7 @@
     </header>
     <div class="ui container exercise">
       <div class="ui raised card m-auto">
-        <h2>Add Your Exercise</h2>
+        <h3>Add Your Exercise</h3>
         <form action="POST">
           <div class="workout-type">
             <label for="type">Exercise Type:</label>
@@ -37,7 +38,7 @@
               <input type="text" name="cardio-name" id="cardio-name" placeholder="Running" />
             </div>
             <div class="distance">
-              <label for="distance">Distance (miles):</label>
+              <label for="distance"><b>Distance (miles):</b></label>
               <input type="number" name="distance" id="distance" placeholder="5" />
             </div>
             <div class="duration">
@@ -68,10 +69,10 @@
             </div>
           </div>
           <div class="buttons">
-            <button disabled class="huge ui blue button complete">
+            <button disabled class="huge ui button complete">
               Complete
             </button>
-            <button disabled class="huge ui positive button add-another">
+            <button disabled class="huge ui button add-another">
               Add Exercise
             </button>
           </div>
